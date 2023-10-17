@@ -2,11 +2,8 @@
         var myIcon = L.icon({
             iconUrl: 'img/restaurant.png',
             iconSize: [32, 37],
-            iconAnchor: [22, 94],
-            popupAnchor: [-3, -76],
             shadowUrl: '/img/shadow.png',
             shadowSize: [51, 37],
-            shadowAnchor: [22, 94]
         });
         return L.marker([latlng.lat, latlng.lng],
             {
