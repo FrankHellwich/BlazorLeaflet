@@ -145,16 +145,40 @@ window.leafletBlazor = {
         const imgLayer = L.imageOverlay(image.url, bounds, layerOptions);
         addLayer(mapId, imgLayer);
     },
-    addGeoJsonLayer: function (mapId, geodata, objectReference) {
+    addGeoJsonLayer: function (mapId, geodata, layerObjectReference) {
         const geoDataObject = JSON.parse(geodata.geoJsonData);
-        var options = {
+        let onEachFeatureFunc = function onEachFeature(feature, layer) {
+            connectInteractionEvents(layer, layerObjectReference);
+        };
+        if (geodata.onEachFeatureFuncName) {
+            onEachFeatureFunc = (feature, layer) => {
+                connectInteractionEvents(layer, layerObjectReference);
+                window[geodata.onEachFeatureFuncName](feature, layer, layerObjectReference);
+            };
+        }
+        let options = {
             ...createInteractiveLayer(geodata),
             title: geodata.title,
             bubblingMouseEvents: geodata.isBubblingMouseEvents,
-            onEachFeature: function onEachFeature(feature, layer) {
-                connectInteractionEvents(layer, objectReference);
-            }
+            onEachFeature: onEachFeatureFunc,
+            style: geodata.style,
+            markersInheritOptions: geodata.markersInheritOptions
         };
+        if (geodata.pointToLayerFuncName) {
+            options.pointToLayer = (geoJsonPoint, latlng) => {
+                return window[geodata.pointToLayerFuncName](geoJsonPoint, latlng, layerObjectReference);
+            };
+        }
+        if (geodata.coordsToLatLngFuncName) {
+            options.coordsToLatLng = (coords) => {
+                return window[geodata.coordsToLatLngFuncName](coords, layerObjectReference);
+            };
+        }
+        if (geodata.filterFuncName) {
+            options.filter = (geoJsonFeature) => {
+                return window[geodata.filterFuncName](geoJsonFeature, layerObjectReference);
+            };
+        }
 
         const geoJsonLayer = L.geoJson(geoDataObject, options);
         addLayer(mapId, geoJsonLayer, geodata.id);

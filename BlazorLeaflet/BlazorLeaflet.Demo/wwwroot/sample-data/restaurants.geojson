@@ -1,0 +1,200 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2023-10-13T09:41:59Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/477447840",
+        "addr:city": "Althengstett",
+        "addr:housenumber": "1",
+        "addr:postcode": "75382",
+        "addr:street": "Am Köpfle",
+        "amenity": "restaurant",
+        "name": "Am Köpfle",
+        "website": "https://amkoepfle.de/",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7931002,
+          48.7327246
+        ]
+      },
+      "id": "node/477447840"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/494456190",
+        "amenity": "restaurant",
+        "cuisine": "portuguese",
+        "name": "Centro Escolar Juvenil Português de Calw",
+        "toilets:wheelchair": "no",
+        "website": "http://www.centro-portugues-calw.de/",
+        "wheelchair": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7695894,
+          48.7112906
+        ]
+      },
+      "id": "node/494456190"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1117763407",
+        "amenity": "restaurant",
+        "cuisine": "regional",
+        "indoor_seating": "yes",
+        "name": "Zum Trollinger",
+        "outdoor_seating": "yes",
+        "phone": "+49 7051 933884",
+        "source:name": "Aufschrift auf dem Gebäude",
+        "toilets:wheelchair": "yes",
+        "website": "https://www.zumtrollinger.com/",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7778265,
+          48.724062
+        ]
+      },
+      "id": "node/1117763407"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1690190315",
+        "addr:city": "Calw",
+        "addr:country": "DE",
+        "addr:housenumber": "1",
+        "addr:postcode": "75365",
+        "addr:street": "Kimmichwiesen",
+        "amenity": "restaurant",
+        "name": "Restaurant Kimmichstub'n",
+        "opening_hours": "Mo,Tu,Fr 17:00-18:00+; We off; Th 16:00-18:00+; Sa,Su 10:00-18:00+",
+        "outdoor_seating": "yes",
+        "phone": "+49 7051 2383",
+        "sport": "9pin",
+        "website": "https://www.kimmichstubn.de"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7631418,
+          48.7069143
+        ]
+      },
+      "id": "node/1690190315"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3190730131",
+        "addr:city": "Althengstett",
+        "addr:country": "DE",
+        "addr:housenumber": "1",
+        "addr:postcode": "75382",
+        "addr:street": "Heimberg",
+        "amenity": "restaurant",
+        "name": "Zum Bierkönig",
+        "website": "www.zumbierkoenig.de",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8020049,
+          48.7209602
+        ]
+      },
+      "id": "node/3190730131"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5046090716",
+        "addr:city": "Simmozheim",
+        "addr:country": "DE",
+        "addr:housenumber": "1",
+        "addr:place": "Eulhart",
+        "addr:postcode": "75397",
+        "amenity": "restaurant",
+        "cuisine": "greek",
+        "indoor_seating": "yes",
+        "name": "Pulverfässle",
+        "opening_hours": "We-Fr 11:30-14:30,17:30-21:00; Sa 17:30-21:30; Su 11:30-15:00",
+        "outdoor_seating": "yes",
+        "phone": "+4970333086900",
+        "toilets:wheelchair": "no",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7949163,
+          48.7472648
+        ]
+      },
+      "id": "node/5046090716"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5309974758",
+        "addr:city": "Althengstett",
+        "addr:housenumber": "50",
+        "addr:postcode": "75382",
+        "addr:street": "Am Schlaichdorn",
+        "amenity": "restaurant",
+        "cuisine": "greek",
+        "indoor_seating": "yes",
+        "name": "Restaurant am Sportplatz TSV Neuhengstett",
+        "opening_hours": "Su-Fr 11:00-14:00, Tu,Th,Fr,Su 17:30-23:00",
+        "outdoor_seating": "yes",
+        "toilets:wheelchair": "no",
+        "website": "http://www.restaurantamsportplatz.de/",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7746613,
+          48.7366678
+        ]
+      },
+      "id": "node/5309974758"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8629759025",
+        "addr:city": "Althengstett",
+        "addr:housenumber": "18/1",
+        "addr:postcode": "75382",
+        "addr:street": "Hengstetter Straße",
+        "amenity": "restaurant",
+        "name": "Sportheim Hase",
+        "owner": "Ellen Rohr",
+        "website": "www.sportheim-hase.de"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7540562,
+          48.7386475
+        ]
+      },
+      "id": "node/8629759025"
+    }
+  ]
+}

@@ -1,10 +1,12 @@
 ﻿@page "/"
+@using BlazorLeaflet.Demo.Models;
 @using BlazorLeaflet.Models
 @using System.Drawing
 @using BlazorLeaflet.Demo.Data
 @using Rectangle = BlazorLeaflet.Models.Rectangle
 @inject CityService CityService
 @inject IJSRuntime JSRuntime
+@inject HttpClient httpClient
 
 <PageTitle>Blazor Leaflet</PageTitle>
 
@@ -26,28 +28,29 @@
 </div>
 
 @code{
-  
-  private Map? _map;
-  private Circle? _circle;
 
-  protected override void OnInitialized()
-  {
-    _map = new Map(JSRuntime)
+    private Map? _map;
+    private Circle? _circle;
+
+    protected override void OnInitialized()
     {
-      Center = _startAt,
-      Zoom = 4.8f
-    };
+        Console.WriteLine("OnInitialized");
+        _map = new Map(JSRuntime)
+        {
+          Center = _startAt,
+          Zoom = 4.8f
+        };
 
-    _map.OnInitialized += () =>
-    {
-      _map.AddLayer(new TileLayer
-      {
-        UrlTemplate = "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        Attribution = "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
-      });
+        _map.OnInitialized += async () =>
+        {
+            _map.AddLayer(new TileLayer
+          {
+            UrlTemplate = "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            Attribution = "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"
+          });
 
-      _map.AddLayer(new Polygon
-      {
+            _map.AddLayer(new Polygon
+          {
         Shape = new[]
         {
           new[]
@@ -63,17 +66,34 @@
         }
       });
 
-      _map.AddLayer(new Rectangle
+        _map.AddLayer(new Rectangle
       {
         Shape = new RectangleF(10f, 0f, 5f, 1f)
       });
 
-      _circle = new Circle
+            _circle = new Circle
       {
         Position = new LatLng(10f, 5f),
         Radius = 10f
       };
-      _map.AddLayer(_circle);
+            _map.AddLayer(_circle);
+
+
+        var geoJsonData = await httpClient.GetStringAsync("sample-data/restaurants.geojson");
+        var geoJsonLayer = new DemoDataLayer
+        {
+            GeoJsonData = geoJsonData,
+            IsInteractive=false,
+            PointToLayerFuncName = "demoPointToLayer",
+            FilterFuncName = "demoFilter",
+            OnEachFeatureFuncName = "demoOnEachPoiFeature"
+        };
+        geoJsonLayer.OnClick += (sender, evtArgs) =>
+        {
+            Console.WriteLine($"GeoJSON-Layer OnClick {evtArgs.LatLng.Lat}/{evtArgs.LatLng.Lng}");
+        };      
+        _map.AddLayer(geoJsonLayer);
+
     };
   }
 
