@@ -1,4 +1,5 @@
-﻿function demoPointToLayer(geoJsonPoint, latlng, objectReference) {
+﻿window.leafletBlazorDemo = {
+    demoPointToLayer: function (geoJsonPoint, latlng, objectReference) {
         var myIcon = L.icon({
             iconUrl: 'img/restaurant.png',
             iconSize: [32, 37],
@@ -12,13 +13,13 @@
                 riseOnHover:true
             }
         );
-    }
+    },
 
-function demoFilter(geoJsonFeature, objectReference) {
-    return true;
-}
+    demoFilter: function (geoJsonFeature, objectReference) {
+        return true;
+    },
 
-async function demoOnEachPoiFeature(feature, layer, objectReference) {
+    demoOnEachPoiFeature: async function (feature, layer, objectReference) {
         layer.on('click', async (e) => {
             //destroy any old popups that might be attached
             if (layer.isPopupOpen()) {
@@ -37,4 +38,19 @@ async function demoOnEachPoiFeature(feature, layer, objectReference) {
                 console.log(e);
             }
         });
+    },
+
+    demoOnEachGeoFeature: async function (feature, layer, objectReference) {
+        let props = feature.properties;
+        let attrs = Object.keys(props);
+        let popupContent = "";
+        let attribute = "";
+        let value = "";
+        for (var i = 0; i < attrs.length; i += 1) {
+            attribute = attrs[i];
+            value = props[attribute];
+            popupContent += attribute + ": " + value + "<br>"
+        }
+        layer.bindPopup(popupContent);
     }
+}

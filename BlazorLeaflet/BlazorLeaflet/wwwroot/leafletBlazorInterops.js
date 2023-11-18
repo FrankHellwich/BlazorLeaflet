@@ -153,7 +153,7 @@ window.leafletBlazor = {
         if (geodata.onEachFeatureFuncName) {
             onEachFeatureFunc = (feature, layer) => {
                 connectInteractionEvents(layer, layerObjectReference);
-                window[geodata.onEachFeatureFuncName](feature, layer, layerObjectReference);
+                executeFunctionByName(geodata.onEachFeatureFuncName,window, feature, layer, layerObjectReference);
             };
         }
         let options = {
@@ -166,23 +166,33 @@ window.leafletBlazor = {
         };
         if (geodata.pointToLayerFuncName) {
             options.pointToLayer = (geoJsonPoint, latlng) => {
-                return window[geodata.pointToLayerFuncName](geoJsonPoint, latlng, layerObjectReference);
+                return executeFunctionByName(geodata.pointToLayerFuncName,window,geoJsonPoint, latlng, layerObjectReference);
             };
         }
         if (geodata.coordsToLatLngFuncName) {
             options.coordsToLatLng = (coords) => {
-                return window[geodata.coordsToLatLngFuncName](coords, layerObjectReference);
+                return executeFunctionByName(geodata.coordsToLatLngFuncName,window,coords, layerObjectReference);
             };
         }
         if (geodata.filterFuncName) {
             options.filter = (geoJsonFeature) => {
-                return window[geodata.filterFuncName](geoJsonFeature, layerObjectReference);
+                return executeFunctionByName(geodata.filterFuncName,window,geoJsonFeature, layerObjectReference);
             };
         }
 
         const geoJsonLayer = L.geoJson(geoDataObject, options);
         addLayer(mapId, geoJsonLayer, geodata.id);
     },
+    addDataToGeoJsonLayer: function (mapId, layerId, geoJsonData) {
+        let layer = layers[mapId].find(l => l.id === layerId);
+        if (layer !== undefined) {
+            const geoDataObject = JSON.parse(geoJsonData);
+            if (geoDataObject !== undefined) {
+                layer.addData(geoDataObject);
+            }
+        }
+    },
+
     removeLayer: function (mapId, layerId) {
         const remainingLayers = layers[mapId].filter((layer) => layer.id !== layerId);
         const layersToBeRemoved = layers[mapId].filter((layer) => layer.id === layerId); // should be only one ...
@@ -483,6 +493,17 @@ function connectInteractionEvents(interactiveObject, objectReference) {
         "mouseout": "NotifyMouseOut",
         "contextmenu": "NotifyContextMenu",
     });
+}
+
+function executeFunctionByName(functionName, context /*, args */) {
+    //https://stackoverflow.com/questions/359788/how-to-execute-a-javascript-function-when-i-have-its-name-as-a-string
+    var args = Array.prototype.slice.call(arguments, 2);
+    var namespaces = functionName.split(".");
+    var func = namespaces.pop();
+    for (var i = 0; i < namespaces.length; i++) {
+        context = context[namespaces[i]];
+    }
+    return context[func].apply(context, args);
 }
 
 // #endregion

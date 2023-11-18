@@ -21,6 +21,9 @@
     <Content Update="wwwroot\demoBlazorLeaflet.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="wwwroot\sample-data\busstops.geojson">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\sample-data\restaurants.geojson">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

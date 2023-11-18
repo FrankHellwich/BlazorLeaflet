@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.JSInterop;
+using System;
+using System.Threading.Tasks;
 
 namespace BlazorLeaflet.Models;
 
@@ -12,6 +14,14 @@ public record GeoJsonDataLayer : InteractiveLayer
     /// </summary>
     public string? GeoJsonData { get; set; }
 
+    /// <summary>
+    /// add geosjon-data to the layer
+    /// </summary>
+    /// <param name="geoJsonData"></param>
+    public async Task AddData(string geoJsonData)
+    {
+        await LeafletInterops.AddDataToGeoJsonLayer(this, geoJsonData);
+    }
     /// <summary>
     /// a string reference to a js-function (interop may cause performance issues)
     /// A Function defining how GeoJSON points spawn Leaflet layers.

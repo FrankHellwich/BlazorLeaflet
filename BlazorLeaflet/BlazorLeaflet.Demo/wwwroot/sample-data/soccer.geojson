@@ -1,0 +1,402 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              8.791928,
+              48.7243103
+            ],
+            [
+              8.791654,
+              48.7242195
+            ],
+            [
+              8.791927,
+              48.7238598
+            ],
+            [
+              8.792201,
+              48.7239514
+            ],
+            [
+              8.791928,
+              48.7243103
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "access": "private",
+        "leisure": "pitch",
+        "operator": "School",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              8.7758892,
+              48.7368525
+            ],
+            [
+              8.7755254,
+              48.7370252
+            ],
+            [
+              8.7751718,
+              48.7367136
+            ],
+            [
+              8.7755153,
+              48.7365618
+            ],
+            [
+              8.7758892,
+              48.7368525
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "leisure": "pitch",
+        "lit": "no",
+        "sport": "soccer",
+        "surface": "grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              8.7942373,
+              48.7152422
+            ],
+            [
+              8.7944516,
+              48.7149236
+            ],
+            [
+              8.795246,
+              48.7151562
+            ],
+            [
+              8.7950317,
+              48.7154749
+            ],
+            [
+              8.7942373,
+              48.7152422
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "leisure": "pitch",
+        "lit": "no",
+        "sport": "soccer",
+        "surface": "grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              8.7915588,
+              48.7330795
+            ],
+            [
+              8.7918091,
+              48.7325041
+            ],
+            [
+              8.7920469,
+              48.7321025
+            ],
+            [
+              8.7929733,
+              48.7323038
+            ],
+            [
+              8.7924852,
+              48.7332808
+            ],
+            [
+              8.7915588,
+              48.7330795
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "leisure": "pitch",
+        "operator": "SV Althengstett",
+        "sport": "soccer",
+        "surface": "grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              8.7930889,
+              48.7341146
+            ],
+            [
+              8.7928637,
+              48.7331645
+            ],
+            [
+              8.7938679,
+              48.7330609
+            ],
+            [
+              8.7940931,
+              48.734011
+            ],
+            [
+              8.7930889,
+              48.7341146
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "leisure": "pitch",
+        "operator": "SV Althengstett",
+        "sport": "soccer",
+        "surface": "grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              8.7750448,
+              48.7378862
+            ],
+            [
+              8.774191,
+              48.7371366
+            ],
+            [
+              8.7749729,
+              48.7367493
+            ],
+            [
+              8.7758266,
+              48.7374989
+            ],
+            [
+              8.7750448,
+              48.7378862
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "leisure": "pitch",
+        "lit": "yes",
+        "sport": "soccer",
+        "surface": "grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              8.7542739,
+              48.7386242
+            ],
+            [
+              8.755118,
+              48.7379543
+            ],
+            [
+              8.7558156,
+              48.7383366
+            ],
+            [
+              8.7549715,
+              48.7390065
+            ],
+            [
+              8.7542739,
+              48.7386242
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "leisure": "pitch",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              8.7544687,
+              48.7383987
+            ],
+            [
+              8.7533764,
+              48.7378256
+            ],
+            [
+              8.7539602,
+              48.7373417
+            ],
+            [
+              8.7550525,
+              48.7379148
+            ],
+            [
+              8.7544687,
+              48.7383987
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "leisure": "pitch",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              8.7556122,
+              48.7389091
+            ],
+            [
+              8.7554213,
+              48.7388171
+            ],
+            [
+              8.7557404,
+              48.738529
+            ],
+            [
+              8.7559313,
+              48.738621
+            ],
+            [
+              8.7556122,
+              48.7389091
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "leisure": "pitch",
+        "sport": "soccer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              8.773212,
+              48.7374676
+            ],
+            [
+              8.7726594,
+              48.7369505
+            ],
+            [
+              8.7738666,
+              48.7363894
+            ],
+            [
+              8.7744192,
+              48.7369066
+            ],
+            [
+              8.773212,
+              48.7374676
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "leisure": "pitch",
+        "lit": "yes",
+        "sport": "soccer",
+        "surface": "grass"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              8.7920505,
+              48.7320523
+            ],
+            [
+              8.7923209,
+              48.7316401
+            ],
+            [
+              8.7930268,
+              48.7317522
+            ],
+            [
+              8.7930853,
+              48.7319571
+            ],
+            [
+              8.7930161,
+              48.7322476
+            ],
+            [
+              8.7920505,
+              48.7320523
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "leisure": "pitch",
+        "sport": "soccer",
+        "surface": "grass"
+      }
+    }
+  ]
+}

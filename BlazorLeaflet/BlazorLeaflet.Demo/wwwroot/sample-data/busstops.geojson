@@ -1,0 +1,266 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7541187,
+          48.741496
+        ]
+      },
+      "properties": {
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Ottenbronn Dorfplatz",
+        "network": "VGC",
+        "public_transport": "stop_position"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7878222,
+          48.7274873
+        ]
+      },
+      "properties": {
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Althengstett Industriegebiet",
+        "network": "VGC",
+        "public_transport": "stop_position",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7803451,
+          48.7382542
+        ]
+      },
+      "properties": {
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Kirche",
+        "public_transport": "stop_position",
+        "type": "public_transport"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7915691,
+          48.7252997
+        ]
+      },
+      "properties": {
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Schule",
+        "public_transport": "stop_position",
+        "type": "public_transport"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7903672,
+          48.7231569
+        ]
+      },
+      "properties": {
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Lamm",
+        "public_transport": "stop_position",
+        "type": "public_transport"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7949297,
+          48.7263313
+        ]
+      },
+      "properties": {
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Rathaus",
+        "public_transport": "stop_position",
+        "type": "public_transport"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7940852,
+          48.723233
+        ]
+      },
+      "properties": {
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Kirche",
+        "public_transport": "stop_position",
+        "type": "public_transport"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7897733,
+          48.7343898
+        ]
+      },
+      "properties": {
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Neuhengstett Bundesstra\u00DFe",
+        "public_transport": "stop_position",
+        "type": "public_transport"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7819386,
+          48.7359606
+        ]
+      },
+      "properties": {
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Waldenser Friedhof",
+        "public_transport": "stop_position",
+        "ref_name": "Neuhengstett W.Friedh., Althengstett",
+        "type": "public_transport",
+        "uic_ref": "828521"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.798572,
+          48.726593
+        ]
+      },
+      "properties": {
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Bahnhof",
+        "public_transport": "stop_position",
+        "type": "public_transport"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7554906,
+          48.7394615
+        ]
+      },
+      "properties": {
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Schule",
+        "network": "VGC",
+        "public_transport": "stop_position"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7800208,
+          48.737942
+        ]
+      },
+      "properties": {
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Backhaus",
+        "public_transport": "stop_position",
+        "ref_name": "Neuhengstett Backhaus, Althengstett",
+        "shelter": "yes",
+        "uic_ref": "828522"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7791249,
+          48.7389273
+        ]
+      },
+      "properties": {
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Schule",
+        "public_transport": "stop_position",
+        "ref_name": "Neuhengstett Schule, Althengstett",
+        "uic_ref": "828525"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7846502,
+          48.7219561
+        ]
+      },
+      "properties": {
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Starenweg",
+        "public_transport": "stop_position",
+        "type": "public_transport"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7839007,
+          48.7217246
+        ]
+      },
+      "properties": {
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Starenweg",
+        "public_transport": "stop_position",
+        "type": "public_transport"
+      }
+    }
+  ]
+}

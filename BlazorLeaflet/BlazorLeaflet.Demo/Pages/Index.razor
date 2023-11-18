@@ -20,7 +20,9 @@
   <button class="btn btn-primary mb-2" @onclick="FindCity">Search</button>
   <button class="btn btn-primary mb-2" @onclick="ZoomMap">Zoom</button>
   <button class="btn btn-primary mb-2" @onclick="PanToNY">Pan to New York</button>
-    <button class="btn btn-primary mb-2" @onclick="SetToNY">Set center at New York</button>
+  <button class="btn btn-primary mb-2" @onclick="SetToNY">Set center at New York</button>
+  <button class="btn btn-primary mb-2" @onclick="LoadAdditionalData">Load more Data</button>
+    <button class="btn btn-primary mb-2" @onclick="ClearData">Clear Data</button>
 </div>
 
 <div style="height: 500px; width: 500px;">
@@ -66,7 +68,7 @@
         }
       });
 
-        _map.AddLayer(new Rectangle
+            _map.AddLayer(new Rectangle
       {
         Shape = new RectangleF(10f, 0f, 5f, 1f)
       });
@@ -78,26 +80,64 @@
       };
             _map.AddLayer(_circle);
 
+            //Point-data uses JavaScript-functions and in demoOnEachPoiFeature a callback into cs-layer-code
+            var geoJsonPointData = await httpClient.GetStringAsync("sample-data/restaurants.geojson");
+            var geoJsonPointLayer = new DemoDataLayer
+            {
+                GeoJsonData = geoJsonPointData,
+                IsInteractive=false,
+                    PointToLayerFuncName = "leafletBlazorDemo.demoPointToLayer",
+                    FilterFuncName = "leafletBlazorDemo.demoFilter",
+                    OnEachFeatureFuncName = "leafletBlazorDemo.demoOnEachPoiFeature"
+            };
+            geoJsonPointLayer.OnClick += (sender, evtArgs) =>
+    {
+        Console.WriteLine($"GeoJSON-Point-Layer OnClick {evtArgs.LatLng.Lat}/{evtArgs.LatLng.Lng}");
+    };      
+            _map.AddLayer(geoJsonPointLayer);
+            _dataLayer = geoJsonPointLayer;
 
-        var geoJsonData = await httpClient.GetStringAsync("sample-data/restaurants.geojson");
-        var geoJsonLayer = new DemoDataLayer
-        {
-            GeoJsonData = geoJsonData,
-            IsInteractive=false,
-            PointToLayerFuncName = "demoPointToLayer",
-            FilterFuncName = "demoFilter",
-            OnEachFeatureFuncName = "demoOnEachPoiFeature"
+            //polygon-data with popup-setup in demoOnEachGeoFeature
+            var geoJsonPolyData = await httpClient.GetStringAsync("sample-data/soccer.geojson");
+            var geoJsonPolyLayer = new GeoJsonDataLayer
+            {
+                GeoJsonData = geoJsonPolyData,
+                IsInteractive = true,
+                Style = new Polygon()
+                {
+                    Fill=true,
+                    FillColor = Color.GreenYellow,
+                    FillOpacity=0.5,
+                    StrokeColor = Color.AliceBlue,
+                    StrokeWidth=5
+                },
+                OnEachFeatureFuncName = "leafletBlazorDemo.demoOnEachGeoFeature"
+            };
+            geoJsonPolyLayer.OnClick += (sender, evtArgs) =>
+            {
+                Console.WriteLine($"GeoJSON-Polygon-Layer OnClick {evtArgs.LatLng.Lat}/{evtArgs.LatLng.Lng}");
+            };
+            _map.AddLayer(geoJsonPolyLayer);
         };
-        geoJsonLayer.OnClick += (sender, evtArgs) =>
+    }
+
+    private GeoJsonDataLayer? _dataLayer = null;
+
+    private async void LoadAdditionalData()
+    {
+        if (_dataLayer != null)
         {
-            Console.WriteLine($"GeoJSON-Layer OnClick {evtArgs.LatLng.Lat}/{evtArgs.LatLng.Lng}");
-        };      
-        _map.AddLayer(geoJsonLayer);
+            var geoJsonPointData = await httpClient.GetStringAsync("sample-data/busstops.geojson");
+            await _dataLayer.AddData(geoJsonPointData);    
+        }
 
-    };
-  }
+    }
 
-  private readonly LatLng _startAt = new(47.5574007f, 16.3918687f);
+    private void ClearData()
+    {
+        
+    }
+    private readonly LatLng _startAt = new(47.5574007f, 16.3918687f);
   private string? CityName { get; set; }
 
   private void FindCity()

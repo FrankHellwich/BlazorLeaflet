@@ -14,11 +14,49 @@ public static class LeafletInterops
     private const string BaseObjectContainer = "window.leafletBlazor";
 
     private static ConcurrentDictionary<string, (IDisposable, string, Layer)> LayerReferences { get; } = new();
+    private static ConcurrentDictionary<string, (Map,IJSRuntime)> MapReferences { get; } = new();
 
-    public static ValueTask Create(IJSRuntime jsRuntime, Map map)
-        => jsRuntime.InvokeVoidAsync(
+    public static ValueTask CreateMap(IJSRuntime jsRuntime, Map map)
+    {
+        var mapReference = DotNetObjectReference.Create(map);
+        var result = jsRuntime.InvokeVoidAsync(
             $"{BaseObjectContainer}.create",
-            map, DotNetObjectReference.Create(map));
+            map, mapReference);
+        MapReferences.TryAdd(map.Id, (map,jsRuntime));
+        return result;
+    }
+
+    private static Map? GetMap(string mapId)
+    {
+        if(!MapReferences.TryGetValue(mapId, out (Map,IJSRuntime) value))
+        {
+            throw new InvalidOperationException($"unable to find map for {mapId}");
+        }
+        return value.Item1;
+    }
+
+    private static IJSRuntime? GetRuntimeOfMap(string mapId)
+    {
+        if(!MapReferences.TryGetValue(mapId, out (Map, IJSRuntime) value))
+        {
+            throw new InvalidOperationException($"unable to find runtime for {mapId}");
+        }
+        return value.Item2;
+    }
+
+    private static (string, IJSRuntime) GetMapIdAndRuntimeForLayer(string layerId)
+    {
+        if(!LayerReferences.TryGetValue(layerId, out (IDisposable, string, Layer) layerValue))
+        {
+            throw new InvalidOperationException($"unable to find layer for {layerId}");
+        }
+        string mapId = layerValue.Item2;
+        if(!MapReferences.TryGetValue(mapId, out (Map, IJSRuntime) mapValue))
+        {
+            throw new InvalidOperationException($"unable to find map and runtime for {mapId}");
+        }
+        return (mapId, mapValue.Item2);
+    }
 
     private static DotNetObjectReference<T> CreateLayerReference<T>(string mapId, T layer)
         where T : Layer
@@ -137,6 +175,18 @@ public static class LeafletInterops
 
     public static ValueTask UpdatePolyline(IJSRuntime jsRuntime, string mapId, Polyline polyline)
         => jsRuntime.InvokeVoidAsync($"{BaseObjectContainer}.updatePolyline", mapId, polyline);
+
+    public static ValueTask AddDataToGeoJsonLayer(GeoJsonDataLayer geoJsonDataLayer, string geoJsonData)
+    {
+        var mapRuntime = GetMapIdAndRuntimeForLayer(geoJsonDataLayer.Id);
+        return mapRuntime.Item2.InvokeVoidAsync(
+            $"{BaseObjectContainer}.addDataToGeoJsonLayer",
+            mapRuntime.Item1, geoJsonDataLayer.Id, geoJsonData);
+    }
+    public static ValueTask AddDataToGeoJsonLayer(IJSRuntime jsRuntime, string mapId, GeoJsonDataLayer geoJsonDataLayer, string geoJsonData)
+        => jsRuntime.InvokeVoidAsync(
+            $"{BaseObjectContainer}.addDataToGeoJsonLayer",
+            mapId, geoJsonDataLayer.Id, geoJsonData);
 
     public static ValueTask FitBounds(IJSRuntime jsRuntime, string mapId, PointF corner1, PointF corner2, PointF? padding, float? maxZoom)
         => jsRuntime.InvokeVoidAsync(

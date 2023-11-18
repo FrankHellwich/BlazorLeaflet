@@ -17,6 +17,7 @@ namespace BlazorLeaflet;
 public class Map
 {
     private readonly IJSRuntime _jsRuntime;
+  
     private readonly ObservableCollection<Layer> _layers = new();
 
     private bool _isInitialized;
@@ -165,10 +166,9 @@ public class Map
             {
                 foreach (var item in args.NewItems!)
                 {
-                    var layer = item as Layer;
-                    await LeafletInterops.AddLayer(_jsRuntime, Id, layer);
+                    if (item is Layer layer)
+                        await LeafletInterops.AddLayer(_jsRuntime, Id, layer);
                 }
-
                 break;
             }
             case NotifyCollectionChangedAction.Remove:
