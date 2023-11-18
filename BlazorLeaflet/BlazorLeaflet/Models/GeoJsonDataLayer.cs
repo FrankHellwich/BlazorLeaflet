@@ -54,8 +54,12 @@ public record GeoJsonDataLayer : InteractiveLayer
     /// Path options for styling GeoJSON lines and polygons
     /// called internally when data is added.
     /// </summary>
-    public Path? Style { get; set; }
+    public Path? PathStyle { get; set; }
 
+    /// <summary>
+    /// style = icon for point-data
+    /// </summary>
+    public Icon? PointStyle { get; set; }
     /// <summary>
     /// a string reference to a js-function (interop may cause performance issues)
     /// A Function that will be used to decide whether to show a feature or not.

@@ -22,7 +22,6 @@
   <button class="btn btn-primary mb-2" @onclick="PanToNY">Pan to New York</button>
   <button class="btn btn-primary mb-2" @onclick="SetToNY">Set center at New York</button>
   <button class="btn btn-primary mb-2" @onclick="LoadAdditionalData">Load more Data</button>
-    <button class="btn btn-primary mb-2" @onclick="ClearData">Clear Data</button>
 </div>
 
 <div style="height: 500px; width: 500px;">
@@ -86,9 +85,17 @@
             {
                 GeoJsonData = geoJsonPointData,
                 IsInteractive=false,
-                    PointToLayerFuncName = "leafletBlazorDemo.demoPointToLayer",
-                    FilterFuncName = "leafletBlazorDemo.demoFilter",
-                    OnEachFeatureFuncName = "leafletBlazorDemo.demoOnEachPoiFeature"
+                PointStyle = new Icon()
+                {
+                        Url = "img/restaurant.png",
+                        Size = new Size(32, 37),
+                        ShadowUrl = "/img/shadow.png",
+                        ShadowSize = new Size(51, 37),
+                        DefaultTitle = "Demo-Layer"
+                },
+                //PointToLayerFuncName = "leafletBlazorDemo.demoPointToLayer",
+                FilterFuncName = "leafletBlazorDemo.demoFilter",
+                OnEachFeatureFuncName = "leafletBlazorDemo.demoOnEachPoiFeature"
             };
             geoJsonPointLayer.OnClick += (sender, evtArgs) =>
     {
@@ -103,7 +110,7 @@
             {
                 GeoJsonData = geoJsonPolyData,
                 IsInteractive = true,
-                Style = new Polygon()
+                PathStyle = new Polygon()
                 {
                     Fill=true,
                     FillColor = Color.GreenYellow,
@@ -133,10 +140,6 @@
 
     }
 
-    private void ClearData()
-    {
-        
-    }
     private readonly LatLng _startAt = new(47.5574007f, 16.3918687f);
   private string? CityName { get; set; }
 

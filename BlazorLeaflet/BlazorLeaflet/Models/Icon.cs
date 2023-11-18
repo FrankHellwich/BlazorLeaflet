@@ -59,4 +59,9 @@ public record Icon
     ///     A custom class name to assign to both icon and shadow images. Empty by default.
     /// </summary>
     public string ClassName { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     A default title for markers in GeoJsonLayers. Empty by default.
+    /// </summary>
+    public string DefaultTitle { get; set; } = string.Empty;
 }

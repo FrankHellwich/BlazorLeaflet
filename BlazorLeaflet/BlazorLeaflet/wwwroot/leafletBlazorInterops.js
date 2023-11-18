@@ -164,10 +164,19 @@ window.leafletBlazor = {
             style: geodata.style,
             markersInheritOptions: geodata.markersInheritOptions
         };
+        //if set we use this - otherwise check for default with icon for point-data
         if (geodata.pointToLayerFuncName) {
             options.pointToLayer = (geoJsonPoint, latlng) => {
-                return executeFunctionByName(geodata.pointToLayerFuncName,window,geoJsonPoint, latlng, layerObjectReference);
+                return executeFunctionByName(geodata.pointToLayerFuncName, window, geoJsonPoint, latlng, layerObjectReference);
             };
+        }
+        else {
+            if (geodata.pointStyle) {
+                var ico = createIcon(geodata.pointStyle);
+                options.pointToLayer = (geoJsonPoint, latlng) => {
+                    return this.defaultPointToLayer(geoJsonPoint, latlng, ico, geodata.pointStyle.defaultTitle);
+                };
+            }
         }
         if (geodata.coordsToLatLngFuncName) {
             options.coordsToLatLng = (coords) => {
@@ -261,21 +270,33 @@ window.leafletBlazor = {
     },
     setZoom: function (mapId, zoomLevel) {
         maps[mapId].setZoom(zoomLevel);
+    },
+
+    //default implementaion for point data
+    defaultPointToLayer: function (geoJsonPoint, latlng, iconDef, defaultTitle) {
+        return L.marker([latlng.lat, latlng.lng],
+            {
+                icon: iconDef,
+                title: geoJsonPoint.properties.name??defaultTitle,
+                riseOnHover: true
+            }
+        );
     }
 };
+
 
 function createIcon(icon) {
     return L.icon({
         iconUrl: icon.url,
         iconRetinaUrl: icon.retinaUrl,
-        iconSize: icon.size ? L.point(icon.size.value.width, icon.size.value.height) : null,
-        iconAnchor: icon.anchor ? L.point(icon.anchor.value.x, icon.anchor.value.y) : null,
+        iconSize: icon.size ? L.point(icon.size.width, icon.size.height) : null,
+        iconAnchor: icon.anchor ? L.point(icon.anchor.x, icon.anchor.y) : null,
         popupAnchor: L.point(icon.popupAnchor.x, icon.popupAnchor.y),
         tooltipAnchor: L.point(icon.tooltipAnchor.x, icon.tooltipAnchor.y),
         shadowUrl: icon.shadowUrl,
         shadowRetinaUrl: icon.shadowRetinaUrl,
-        shadowSize: icon.shadowSize ? L.point(icon.shadowSize.value.width, icon.shadowSize.value.height) : null,
-        shadowSizeAnchor: icon.shadowSizeAnchor ? L.point(icon.shadowSizeAnchor.value.width, icon.shadowSizeAnchor.value.height) : null,
+        shadowSize: icon.shadowSize ? L.point(icon.shadowSize.width, icon.shadowSize.height) : null,
+        shadowSizeAnchor: icon.shadowSizeAnchor ? L.point(icon.shadowSizeAnchor.width, icon.shadowSizeAnchor.height) : null,
         className: icon.className
     })
 }
