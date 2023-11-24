@@ -81,7 +81,7 @@
 
             //Point-data uses JavaScript-functions and in demoOnEachPoiFeature a callback into cs-layer-code
             var geoJsonPointData = await httpClient.GetStringAsync("sample-data/restaurants.geojson");
-            var geoJsonPointLayer = new DemoDataLayer
+            var geoJsonPointLayer = new DemoDataLayer()
             {
                 GeoJsonData = geoJsonPointData,
                 IsInteractive=false,
@@ -98,9 +98,9 @@
                 OnEachFeatureFuncName = "leafletBlazorDemo.demoOnEachPoiFeature"
             };
             geoJsonPointLayer.OnClick += (sender, evtArgs) =>
-    {
-        Console.WriteLine($"GeoJSON-Point-Layer OnClick {evtArgs.LatLng.Lat}/{evtArgs.LatLng.Lng}");
-    };      
+            {
+                Console.WriteLine($"GeoJSON-Point-Layer OnClick {evtArgs.LatLng.Lat}/{evtArgs.LatLng.Lng}");
+            };      
             _map.AddLayer(geoJsonPointLayer);
             _dataLayer = geoJsonPointLayer;
 
@@ -125,6 +125,26 @@
                 Console.WriteLine($"GeoJSON-Polygon-Layer OnClick {evtArgs.LatLng.Lat}/{evtArgs.LatLng.Lng}");
             };
             _map.AddLayer(geoJsonPolyLayer);
+
+            //Point-data uses dynamic queries
+            var overpassPointLayer = new DynamicDataLayer(_map)
+                {
+                    IsInteractive = false,
+                    PointStyle = new Icon()
+                    {
+                        Url = "img/fillingstation.png",
+                        Size = new Size(32, 37),
+                        ShadowUrl = "/img/shadow.png",
+                        ShadowSize = new Size(51, 37),
+                        DefaultTitle = "fillingstation"
+                    },
+                    OverpassQuery = @"(nwr({{bbox}})[amenity=fuel];);out center;"
+                    //PointToLayerFuncName = "leafletBlazorDemo.demoPointToLayer",
+                    // FilterFuncName = "leafletBlazorDemo.demoFilter",
+                    // OnEachFeatureFuncName = "leafletBlazorDemo.demoOnEachPoiFeature"
+                };
+            _map.AddLayer(overpassPointLayer);
+
         };
     }
 

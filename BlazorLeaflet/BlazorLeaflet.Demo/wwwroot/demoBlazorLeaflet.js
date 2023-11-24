@@ -26,13 +26,9 @@
                 layer.unbindPopup();
             }
             try {
-                const response = await fetch('sample-data/popupcontent.html');
-                let popupContent = await response.text() + "<br>";
-
                 let featureData = await objectReference.invokeMethodAsync('GetFeatureData', JSON.stringify(feature));
-                popupContent += featureData;   
                 layer.closePopup();
-                layer.bindPopup(popupContent);
+                layer.bindPopup(featureData);
                 layer.openPopup();
             } catch (e) {
                 console.log(e);

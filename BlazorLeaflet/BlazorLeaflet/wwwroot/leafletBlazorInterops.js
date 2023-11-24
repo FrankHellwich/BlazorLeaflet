@@ -143,6 +143,7 @@ window.leafletBlazor = {
         const bounds = L.latLngBounds(corner1, corner2);
 
         const imgLayer = L.imageOverlay(image.url, bounds, layerOptions);
+        connectLayerEvents(imgLayer, objectReference);
         addLayer(mapId, imgLayer);
     },
     addGeoJsonLayer: function (mapId, geodata, layerObjectReference) {
@@ -190,6 +191,7 @@ window.leafletBlazor = {
         }
 
         const geoJsonLayer = L.geoJson(geoDataObject, options);
+        connectLayerEvents(geoJsonLayer, layerObjectReference);
         addLayer(mapId, geoJsonLayer, geodata.id);
     },
     addDataToGeoJsonLayer: function (mapId, layerId, geoJsonData) {
@@ -248,6 +250,11 @@ window.leafletBlazor = {
     getCenter: function (mapId) {
         return maps[mapId].getCenter();
     },
+    getBounds: function (mapId) {
+        let bounds = maps[mapId].getBounds();
+        console.log(bounds);
+        return bounds;
+    },
     getZoom: function (mapId) {
         return maps[mapId].getZoom();
     },
@@ -265,9 +272,9 @@ window.leafletBlazor = {
             map.zoomOut(map.options.zoomDelta * (e.shiftKey ? 3 : 1));
         }
     },
-    getBounds: function (mapId) {
-        return maps[mapId].getBounds();
-    },
+    //getBounds: function (mapId) {
+    //    return maps[mapId].getBounds();
+    //},
     setZoom: function (mapId, zoomLevel) {
         maps[mapId].setZoom(zoomLevel);
     },
@@ -484,8 +491,28 @@ function connectLayerEvents(layer, objectReference) {
 }
 
 function connectInteractiveLayerEvents(interactiveLayer, objectReference) {
-
     connectLayerEvents(interactiveLayer, objectReference);
+    connectInteractionEvents(interactiveLayer, objectReference);
+}
+
+/**
+ * don't use ass and remove becaus it's trigggered for each feature
+ * @param {any} layer
+ * @param {any} objectReference
+ */
+function connectGeoJsonLayerEvents(layer, objectReference) {
+    mapEvents(layer, objectReference, {
+        //"add": "NotifyAdd",
+        //"remove": "NotifyRemove",
+        "popupopen": "NotifyPopupOpen",
+        "popupclose": "NotifyPopupClose",
+        "tooltipopen": "NotifyTooltipOpen",
+        "tooltipclose": "NotifyTooltipClose",
+    });
+}
+
+function connectInteractiveGeoJsonLayerEvents(interactiveLayer, objectReference) {
+    connectGeoJsonLayerEvents(interactiveLayer, objectReference);
     connectInteractionEvents(interactiveLayer, objectReference);
 }
 

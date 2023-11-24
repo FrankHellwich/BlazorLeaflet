@@ -203,8 +203,10 @@ public static class LeafletInterops
 
     public static ValueTask<float> GetZoom(IJSRuntime jsRuntime, string mapId)
         => jsRuntime.InvokeAsync<float>($"{BaseObjectContainer}.getZoom", mapId);
+    public static ValueTask<LatLngBounds> GetBounds(IJSRuntime jsRuntime, string mapId)
+        => jsRuntime.InvokeAsync<LatLngBounds>($"{BaseObjectContainer}.getBounds", mapId);
 
-        public static async Task SetZoom(IJSRuntime jsRuntime, string mapId, float zoomLevel)
+    public static async Task SetZoom(IJSRuntime jsRuntime, string mapId, float zoomLevel)
         {
             await jsRuntime.InvokeVoidAsync($"{BaseObjectContainer}.setZoom", mapId, zoomLevel);
         }

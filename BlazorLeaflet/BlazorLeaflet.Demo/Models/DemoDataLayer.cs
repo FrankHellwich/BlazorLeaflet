@@ -8,6 +8,10 @@ namespace BlazorLeaflet.Demo.Models
 {
     public record DemoDataLayer: GeoJsonDataLayer
     {
+        public DemoDataLayer()
+        {
+        }
+
         [JSInvokable]
         public Task<string> GetFeatureData(string featureData)
         {
@@ -19,5 +23,6 @@ namespace BlazorLeaflet.Demo.Models
             }
             return Task<string>.FromResult(data);
         }
+
     }
 }

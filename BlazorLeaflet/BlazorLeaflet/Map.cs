@@ -203,6 +203,8 @@ public class Map
 
     public async Task<float> GetZoom()
         => await LeafletInterops.GetZoom(_jsRuntime, Id);
+    public async Task<LatLngBounds> GetBounds()
+        => await LeafletInterops.GetBounds(_jsRuntime, Id);
 
     /// <summary>
     ///     Increases the zoom level by one notch.
